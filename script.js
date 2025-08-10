@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
 
     const mainHeader = document.getElementById('main-header');
@@ -15,12 +16,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let currentImageIndex = 0;
 
+
+
     // Animação de entrada do cabeçalho
     function animateHeader() {
         if (mainHeader) mainHeader.classList.add('visible');
         if (brandLogo) brandLogo.classList.add('visible');
         if (headerTexts.length > 0) headerTexts.forEach(text => text.classList.add('visible'));
     }
+
+
 
     // Lógica para alternar entre as seções
     function switchTab(event) {
@@ -40,6 +45,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+
+
 
     // Lógica da galeria de imagens e vídeos
     function openImage(src, alt) {
@@ -70,6 +77,8 @@ document.addEventListener('DOMContentLoaded', function() {
         openImage(galleryImages[currentImageIndex].src, galleryImages[currentImageIndex].alt);
     }
 
+
+
     // Event Listeners
     navLinks.forEach(link => link.addEventListener('click', switchTab));
     galleryImages.forEach((img, index) => {
@@ -78,6 +87,8 @@ document.addEventListener('DOMContentLoaded', function() {
             openImage(img.src, img.alt);
         });
     });
+
+
 
     // Event listener para os itens de vídeo
     videoItems.forEach(item => {
@@ -93,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     closeBtn.addEventListener('click', () => {
         overlay.style.display = 'none';
-        fullImg.src = ''; // Isso garante que o vídeo pare de tocar
+        fullImg.src = ''; // vídeo pare de tocar
     });
     
     overlay.addEventListener('click', (event) => {
@@ -105,6 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     nextBtn.addEventListener('click', showNextImage);
     prevBtn.addEventListener('click', showPrevImage);
+
 
     // Inicialização da página
     animateHeader();

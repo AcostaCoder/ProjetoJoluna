@@ -1,3 +1,4 @@
+
 /* --- CONFIGURAÇÕES GERAIS --- */
 :root {
     --primary-color: #0a4086;
@@ -22,10 +23,12 @@ body {
     line-height: 1.9;
 }
 
+
+
 /* --- CABEÇALHO E NAVEGAÇÃO --- */
 #main-header {
     position: relative;
-    padding: 20px 8px;
+    padding: 18px 9px;
     background-image: url('img/cabecalho.jpg');
     background-size: cover;
     background-position: center;
@@ -55,7 +58,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 26px;
+    gap: 30px;
 }
 
 .brand-logo {
@@ -73,7 +76,7 @@ body {
 
 .header-text {
     font-family: var(--font-header);
-    font-weight: 380;
+    font-weight: 500;
     font-size: 1.7rem;
     color: var(--light-text-color);
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
@@ -85,13 +88,13 @@ body {
 }
 
 .header-text.left {
-    transform: translateX(-5px);
+    transform: translateX(-20px);
     transition-delay: 0.5s;
     text-align: left;
 }
 
 .header-text.right {
-    transform: translateX(5px);
+    transform: translateX(20px);
     transition-delay: 0.5s;
 }
 
@@ -102,7 +105,7 @@ body {
 
 #main-nav {
     background-color: var(--primary-color);
-    padding: 11px 0;
+    padding: 8px 0;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -112,14 +115,15 @@ body {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 80px;
+    gap: 20px;
+    flex-wrap: wrap; 
 }
 
 #main-nav .nav-link {
     color: var(--light-text-color);
     text-decoration: none;
     font-family: var(--font-header);
-    font-weight: 550;
+    font-weight: 500;
     padding: 10px 15px;
     border-radius: 7px;
     transition: background-color 0.5s ease;
@@ -138,9 +142,11 @@ body {
     margin-right: 3px;
 }
 
+
+
 /* --- SEÇÕES DE CONTEÚDO --- */
 #content-area {
-    padding: 20px 5%; /* Ajuste a largura do padding para ser responsivo */
+    padding: 25px 5%;
     margin: 0 auto;
 }
 
@@ -166,6 +172,8 @@ body {
     font-size: 2rem;
 }
 
+
+
 /* Efeitos de Animação para os elementos */
 .content-section .intro-text,
 .content-section .owner-info,
@@ -184,6 +192,8 @@ body {
     transform: translateY(0);
 }
 
+
+
 /* --- SEÇÃO HOME --- */
 .owner-info {
     display: flex;
@@ -201,6 +211,8 @@ body {
 
 .owner-name { font-weight: bold; font-size: 1.2rem; }
 .owner-role { color: #0a4086; }
+
+
 
 /* --- SEÇÃO GALERIA --- */
 #image-gallery {
@@ -236,7 +248,9 @@ body {
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
-/* Estilo para o item de vídeo */
+
+
+/* Estilo para o item de vídeo (quando usar .mp4) */
 .gallery-item.video-item {
     position: relative;
     padding-bottom: 56.25%;
@@ -283,22 +297,24 @@ body {
     transform: scale(1.2);
 }
 
+
+
 /* --- SEÇÃO PARCEIROS --- */
 #partners-list {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 25px;
     text-align: center;
 }
 
 .partner-item {
-    width: 230px;
-    height: 190px;
+    width: 210px;
+    height: 170px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
+    border-radius: 13px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     background-color: #f4f4f4fd;
     padding: 7px;
@@ -329,6 +345,8 @@ body {
     transform: scale(1.05);
 }
 
+
+
 /* --- SEÇÃO CONTATO --- */
 .contact-info {
     text-align: center;
@@ -345,6 +363,8 @@ body {
     margin-right: 5px;
     color: var(--secondary-color);
 }
+
+
 
 /* --- FOOTER --- */
 footer {
@@ -373,6 +393,8 @@ footer {
     margin-right: 5px;
     color: #f5a523e3;
 }
+
+
 
 /* --- OVERLAY DA GALERIA --- */
 .overlay {
@@ -430,6 +452,8 @@ footer {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
+
+
 /* --- RESPONSIVIDADE (MEDIA QUERIES) --- */
 @media (max-width: 768px) {
     .owner-info {
@@ -437,19 +461,19 @@ footer {
         text-align: center;
     }
     #main-nav ul {
-        gap: 4px;
+        gap: 5px;
         flex-wrap: wrap;
     }
     #main-nav .nav-link {
-        padding: 7px 9px;
-        font-size: 0.8rem;
+        padding: 8px 10px;
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 600px) {
     .header-content-wrapper {
         flex-direction: column;
-        gap: 2px; 
+        gap: 5px; 
     }
 
     .brand-logo {
@@ -464,14 +488,18 @@ footer {
     }
 
     #main-nav ul {
-        flex-direction: column;
+        flex-direction: row; /* Muda de volta para linha */
+        flex-wrap: wrap; /* quebrar a linha */
+        justify-content: center;
+        gap: 5px;
     }
 
     #main-nav .nav-link {
         font-size: 1rem;
         padding: 5px;
-        width: 100%;
+        width: 48%; /* largura para 2 a 3 itens por linha */
         text-align: center;
+        margin: 5px 0; /* margem entre as linhas */
     }
 
     .section-title {
