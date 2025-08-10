@@ -25,7 +25,7 @@ body {
 /* --- CABEÇALHO E NAVEGAÇÃO --- */
 #main-header {
     position: relative;
-    padding: 18px 9px;
+    padding: 20px 8px;
     background-image: url('img/cabecalho.jpg');
     background-size: cover;
     background-position: center;
@@ -55,7 +55,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 65px;
+    gap: 26px;
 }
 
 .brand-logo {
@@ -73,22 +73,25 @@ body {
 
 .header-text {
     font-family: var(--font-header);
-    font-weight: 700;
-    font-size: 2.2rem;
+    font-weight: 380;
+    font-size: 1.7rem;
     color: var(--light-text-color);
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     text-transform: uppercase;
     opacity: 0;
     transition: opacity 1.2s ease-in-out 0.5s;
+    text-align: right;
+    white-space: nowrap;
 }
 
 .header-text.left {
-    transform: translateX(-20px);
+    transform: translateX(-5px);
     transition-delay: 0.5s;
+    text-align: left;
 }
 
 .header-text.right {
-    transform: translateX(20px);
+    transform: translateX(5px);
     transition-delay: 0.5s;
 }
 
@@ -99,7 +102,7 @@ body {
 
 #main-nav {
     background-color: var(--primary-color);
-    padding: 8px 0;
+    padding: 11px 0;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -109,7 +112,7 @@ body {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 80px;
 }
 
 #main-nav .nav-link {
@@ -137,8 +140,7 @@ body {
 
 /* --- SEÇÕES DE CONTEÚDO --- */
 #content-area {
-    padding: 30px 15px;
-    max-width: 960px;
+    padding: 20px 5%; /* Ajuste a largura do padding para ser responsivo */
     margin: 0 auto;
 }
 
@@ -428,18 +430,61 @@ footer {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* --- RESPONSIVIDADE --- */
+/* --- RESPONSIVIDADE (MEDIA QUERIES) --- */
 @media (max-width: 768px) {
     .owner-info {
         flex-direction: column;
         text-align: center;
     }
     #main-nav ul {
-        gap: 5px;
+        gap: 4px;
         flex-wrap: wrap;
     }
     #main-nav .nav-link {
-        padding: 8px 10px;
-        font-size: 0.9rem;
+        padding: 7px 9px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .header-content-wrapper {
+        flex-direction: column;
+        gap: 2px; 
+    }
+
+    .brand-logo {
+        max-width: 200px;
+    }
+
+    .header-text {
+        font-size: 1.5rem;
+        text-align: center;
+        white-space: normal;
+        transform: none !important;
+    }
+
+    #main-nav ul {
+        flex-direction: column;
+    }
+
+    #main-nav .nav-link {
+        font-size: 1rem;
+        padding: 5px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .owner-info {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .owner-photo {
+        width: 120px;
+        height: 120px;
     }
 }
