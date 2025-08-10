@@ -2,7 +2,7 @@
 :root {
     --primary-color: #0a4086; /* Azul escuro */
     --secondary-color: #f5b44b; /* Amarelo/Laranja */
-    --background-color: #f4f4f4f3;
+    --background-color: #f4f4f4fd;
     --text-color: #2e2e2e;
     --light-text-color: #ffffff;
     --font-header: 'Montserrat', sans-serif;
@@ -30,6 +30,10 @@ body {
     background-size: cover;
     background-position: center;
     text-align: center;
+    /* Animação de Transição: INÍCIO */
+    opacity: 0.3; 
+    transition: opacity 1s ease-in-out;
+    /* Animação de Transição: FIM */
 }
 
 /* Camada escura sobre o fundo para melhor leitura do logo */
@@ -44,9 +48,17 @@ body {
     z-index: 1;
 }
 
+#main-header.visible {
+    opacity: 1;
+}
+
 .header-content-wrapper {
     position: relative;
     z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 65px; /* Espaço entre o texto e o logo */
 }
 
 .brand-logo {
@@ -54,7 +66,40 @@ body {
     height: auto;
     border-radius: 95%;
     border: 0px solid var(--light-text-color);
+    opacity: 0.3;
+    transition: opacity 1s ease-in-out 0.2s;
 }
+
+.brand-logo.visible {
+    opacity: 1;
+}
+
+.header-text {
+    font-family: var(--font-header);
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: var(--light-text-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-transform: uppercase;
+    opacity: 0; /* Começa com a opacidade 0 para a animação */
+    transition: opacity 1.2s ease-in-out 0.5s; /* Duração um pouco maior e um pequeno atraso */
+}
+
+.header-text.left {
+    transform: translateX(-20px); /* Posição inicial para o efeito de deslizar */
+    transition-delay: 0.5s;
+}
+
+.header-text.right {
+    transform: translateX(20px); /* Posição inicial para o efeito de deslizar */
+    transition-delay: 0.5s;
+}
+
+.header-text.visible {
+    opacity: 1;
+    transform: translateX(0); /* Posição final */
+}
+
 
 /* --- NAVEGAÇÃO --- */
 #main-nav {
@@ -99,12 +144,12 @@ body {
 }
 
 .content-section {
-    display: none; /* Todas as seções começam escondidas */
+    display: none;
     animation: fadeIn 0.7s ease-in-out;
 }
 
 .content-section.active {
-    display: block; /* A seção ativa é exibida */
+    display: block;
 }
 
 @keyframes fadeIn {
@@ -134,8 +179,26 @@ body {
     object-fit: cover;
 }
 .owner-name { font-weight: bold; font-size: 1.2rem; }
-.owner-role { color: #555; }
+.owner-role { color: #0a4086; }
 
+
+/* Efeitos de Animação para os elementos */
+.content-section .intro-text,
+.content-section .owner-info,
+.content-section .section-title,
+.content-section .contact-info {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.content-section.active .intro-text.visible,
+.content-section.active .owner-info.visible,
+.content-section.active .section-title.visible,
+.content-section.active .contact-info.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 /* --- GALERIA --- */
 #image-gallery {
@@ -153,6 +216,17 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.gallery-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.gallery-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .gallery-item img:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
@@ -161,22 +235,51 @@ body {
 /* --- PARCEIROS --- */
 #partners-list {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 30px;
     text-align: center;
 }
-.partner-item img {
-    max-height: 130px;
-    margin-bottom: 8px;
-    filter: grayscale(100%);
-    transition: filter 0.3s ease;
+
+.partner-item {
+    /* Define o tamanho fixo para cada item, criando uma "caixa" para a imagem */
+    width: 230px;
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius:12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: #f4f4f4fd;; /* Fundo branco para a caixa da imagem */
+    padding: 7px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out, box-shadow 0.3s ease;
 }
+
+.partner-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.partner-item img {
+    /* A imagem preenche a caixa do .partner-item sem distorção */
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Centraliza e ajusta a imagem dentro da "caixa" */
+    filter: grayscale(100%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.partner-item:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
 .partner-item:hover img {
     filter: grayscale(0%);
     transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
+
 
 /* --- CONTATO --- */
 .contact-info {

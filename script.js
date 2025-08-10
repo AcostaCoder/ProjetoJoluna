@@ -1,6 +1,27 @@
 // Espera o documento HTML ser completamente carregado antes de rodar o script
 document.addEventListener('DOMContentLoaded', function() {
 
+    const mainHeader = document.getElementById('main-header');
+    const brandLogo = document.querySelector('.brand-logo');
+    const headerTexts = document.querySelectorAll('.header-text');
+
+    // Adiciona a classe 'visible' ao header, logo e textos para iniciar a animação
+    if (mainHeader) {
+        setTimeout(() => {
+            mainHeader.classList.add('visible');
+        }, 100);
+    }
+    if (brandLogo) {
+        setTimeout(() => {
+            brandLogo.classList.add('visible');
+        }, 300);
+    }
+    if (headerTexts.length > 0) {
+        setTimeout(() => {
+            headerTexts.forEach(text => text.classList.add('visible'));
+        }, 500); // Atraso um pouco maior para que apareça por último
+    }
+
     // --- Lógica de Navegação entre Seções ---
     const navLinks = document.querySelectorAll('.nav-link');
     const contentSections = document.querySelectorAll('.content-section');
@@ -22,11 +43,26 @@ document.addEventListener('DOMContentLoaded', function() {
         const targetSection = document.getElementById(targetId);
         if (targetSection) {
             targetSection.classList.add('active');
+
+            // Adiciona a classe 'visible' aos elementos da seção ativa com um atraso
+            const elementsToAnimate = targetSection.querySelectorAll('.section-title, .intro-text, .owner-info, .gallery-item, .partner-item, .contact-info');
+            elementsToAnimate.forEach((element, index) => {
+                setTimeout(() => element.classList.add('visible'), 100 * index); 
+            });
         }
     }
     navLinks.forEach(link => {
         link.addEventListener('click', switchTab);
     });
+
+    // Anima a primeira seção ao carregar a página
+    const homeSection = document.getElementById('home-section');
+    if (homeSection) {
+        const initialElements = homeSection.querySelectorAll('.section-title, .intro-text, .owner-info');
+        initialElements.forEach((element, index) => {
+            setTimeout(() => element.classList.add('visible'), 100 * index);
+        });
+    }
 
     // --- Lógica da Galeria de Imagens (corrigido) ---
     const galleryImages = document.querySelectorAll('.gallery-item img');
@@ -45,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Função para abrir a imagem de forma simples (sem animação)
     const openImage = (src, alt) => {
         fullImg.src = src;
         fullImg.alt = alt;
@@ -64,14 +99,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const showNextImage = () => {
         currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
-        fullImg.src = galleryImages[currentImageIndex].src;
-        fullImg.alt = galleryImages[currentImageIndex].alt;
+        fullImg.src = galleryImages [currentImageIndex].src;
+        fullImg.alt = galleryImages [currentImageIndex].alt;
     };
 
     const showPrevImage = () => {
         currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-        fullImg.src = galleryImages[currentImageIndex].src;
-        fullImg.alt = galleryImages[currentImageIndex].alt;
+        fullImg.src = galleryImages [currentImageIndex].src;
+        fullImg.alt = galleryImages [currentImageIndex].alt;
     };
 
     nextBtn.addEventListener('click', showNextImage);
